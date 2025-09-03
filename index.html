@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extranet - Franquicida Ciudapolis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #7f8c8d;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding-bottom: 20px;
+        }
+
+        .menu-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            padding: 15px 20px 10px;
+            font-size: 12px;
+            color: #95a5a6;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: #ecf0f1;
+            border-left-color: #3498db;
+        }
+
+        .menu-item.active {
+            background: #e8f4f8;
+            color: #2980b9;
+            border-left-color: #3498db;
+        }
+
+        .menu-item i {
+            width: 20px;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .page-title {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: var(--card-color);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        .card-icon i {
+            font-size: 20px;
+            color: white;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .card-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            line-height: 1.3;
+            font-weight: 400;
+        }
+
+        /* Color schemes for different card rows */
+        .dashboard-card:nth-child(1) { --card-color: #a4b85b; }
+        .dashboard-card:nth-child(2) { --card-color: #a4b85b; }
+        .dashboard-card:nth-child(3) { --card-color: #a4b85b; }
+        .dashboard-card:nth-child(4) { --card-color: #a4b85b; }
+
+        .dashboard-card:nth-child(5) { --card-color: #e09545; }
+        .dashboard-card:nth-child(6) { --card-color: #e09545; }
+        .dashboard-card:nth-child(7) { --card-color: #e09545; }
+        .dashboard-card:nth-child(8) { --card-color: #e09545; }
+
+        .dashboard-card:nth-child(9) { --card-color: #e07b72; }
+        .dashboard-card:nth-child(10) { --card-color: #e07b72; }
+        .dashboard-card:nth-child(11) { --card-color: #e07b72; }
+        .dashboard-card:nth-child(12) { --card-color: #e07b72; }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        /* Estilos de scroll personalizados para el sidebar */
+        .sidebar-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                height: calc(100vh - 70px);
+                z-index: 1000;
+                transition: left 0.3s ease;
+                /* El scroll ya está configurado en .sidebar-content */
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .sidebar-content {
+                /* En móviles, asegurar que el contenido tenga la altura correcta */
+                max-height: calc(100vh - 70px - 80px); /* 70px del header + 80px del sidebar-header */
+            }
+
+            .main-content {
+                padding: 20px;
+                width: 100%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .dashboard-card {
+                padding: 20px;
+            }
+
+            .page-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Mejoras adicionales para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 15px;
+            }
+
+            .logo h1 {
+                font-size: 16px;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .dashboard-card {
+                padding: 15px;
+                min-height: 100px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .card-subtitle {
+                font-size: 12px;
+            }
+        }
+
+        /* Overlay para cerrar el menú en móviles */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-overlay.active {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div style="width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                <img src="logociudapolis.webp" alt="Extraneg Logo" style="width: 32px; height: 32px; object-fit: contain;">
+            </div>
+            <h1>Extranet Franquicia Ciudapolis</h1>
+        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Overlay para cerrar menú en móviles -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                INICIO
+            </div>
+            <div class="sidebar-content">
+                <ul class="sidebar-menu">
+                    <li class="menu-section">
+                        <div class="section-title">Mi propiedad</div>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-building"></i>
+                            <span>Propiedades</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-percentage"></i>
+                            <span>Avances</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Documentación</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-section">
+                        <div class="section-title">Mis Cuentas y pagos</div>
+                        <a href="#" class="menu-item active">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Estado de cuenta</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Cronograma de pagos</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-cash-register"></i>
+                            <span>Tesorería</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-section">
+                        <div class="section-title">Atención postventa</div>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-hands-helping"></i>
+                            <span>Requiero ayuda</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Seguimiento</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Preguntas frecuentes</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-section">
+                        <div class="section-title">Comunicaciones</div>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-address-book"></i>
+                            <span>Directorio</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Circulares</span>
+                        </a>
+
+                    </li>
+
+                    <li class="menu-section">
+                        <div class="section-title">Comunidad</div>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-store"></i>
+                            <span>Marketplace interno</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-handshake"></i>
+                            <span>Proveedores</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-comments"></i>
+                            <span>Foro</span>
+                        </a>
+                    </li>
+
+                </ul>
+                                        <a href="#" class="menu-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="page-title">Cliente: Juan Manuel Perez Alanibar</h1>
+            
+            <div class="dashboard-grid">
+                <!-- Fila 1 - Verde -->
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="card-title">Mis Datos</div>
+                    <div class="card-subtitle">Datos Personales, Co Propietarios</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="card-title">Seguridad</div>
+                    <div class="card-subtitle">Cambio de clave</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="card-title">Horarios</div>
+                    <div class="card-subtitle">Horarios de atención</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="card-title">Atención postventa</div>
+                    <div class="card-subtitle">Solicitud de ayuda</div>
+                </div>
+
+                <!-- Fila 2 - Naranja -->
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="card-title">Calendario</div>
+                    <div class="card-subtitle">Actividades</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="card-title">Circulares</div>
+                    <div class="card-subtitle">Comunicaciones internas</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="card-title">Nueva compra</div>
+                    <div class="card-subtitle">Realiza tu mismo la elección del lote en el sistema de mapas</div>
+                </div>
+
+
+                <!-- Fila 3 - Rojo -->
+                <div class="dashboard-card">
+     
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-money-check"></i>
+                    </div>
+                    <div class="card-title">Pagos Online</div>
+                    <div class="card-subtitle">Realiza tus pagos en linea</div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                    <div class="card-title">Directorio</div>
+                    <div class="card-subtitle">Datos de contacto</div>
+                </div>
+
+                <div class="dashboard-card">
+
+                </div>
+            </div>
+
+            <div class="footer">
+                © 2025 - Franquicia Ciudapolis
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        // Cerrar sidebar al hacer click fuera (en móviles)
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                closeSidebar();
+            }
+        });
+
+        // Cerrar sidebar al cambiar el tamaño de ventana
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
+
+        // Añadir efectos de hover y click a las tarjetas
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Aquí puedes agregar la lógica de navegación
+                console.log('Clicked on:', this.querySelector('.card-title').textContent);
+            });
+        });
+
+        // Añadir efecto de ripple a las tarjetas
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                let ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                this.appendChild(ripple);
+
+                let rect = this.getBoundingClientRect();
+                let size = Math.max(rect.width, rect.height);
+                let x = e.clientX - rect.left - size / 2;
+                let y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255,255,255,0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // CSS para la animación de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
