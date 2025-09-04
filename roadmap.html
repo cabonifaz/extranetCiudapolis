@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap del Proyecto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .roadmap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            background: linear-gradient(90deg, #1e3a8a, #0ea5e9, #06b6d4, #ec4899, #ef4444, #65a30d);
+        }
+
+        .header-item {
+            padding: 15px 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            padding: 20px;
+            min-height: 600px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .phase-card {
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .phase-card:hover::before {
+            left: 100%;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .phase-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .phase-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .phase-date {
+            font-size: 11px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Colores por categoría */
+        .core { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .coreDetenido { background: linear-gradient(135deg, #7983a3, #bcc2cc); }
+        .infra { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+        .marketing { background: linear-gradient(135deg, #4b5563, #6b7280); }
+        .admin { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+        .comm { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .iot { background: linear-gradient(135deg, #65a30d, #84cc16); }
+
+        /* Estados */
+        .desarrollo { border-left: 5px solid #22c55e; }
+        .propuesta { border-left: 5px solid #f59e0b; }
+        .solicitud { border-left: 5px solid #ef4444; }
+        .pre-piloto { border-left: 5px solid #8b5cf6; }
+        .detenido { border-left: 5px solid #f59e0b; }
+
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .header {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+            }
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .phase-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="roadmap-container">
+        <div class="header">
+            <div class="header-item">Core Transaccional</div>
+            <div class="header-item">Infraestructura Cloud</div>
+            <div class="header-item">Marketing</div>
+            <div class="header-item">Administración</div>
+            <div class="header-item">PostVenta</div>
+            <div class="header-item">IoT</div>
+        </div>
+
+        <div class="content">
+            <!-- Columna 1: CORE TRANSACCIONAL -->
+            <div class="column">
+                <div class="phase-card core desarrollo">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 1</div>
+                    <div class="phase-subtitle">PROSPECCIÓN</div>
+                    <div class="phase-date">Estado: Producción<br>Fecha: 07/2024</div>
+                </div>
+                
+                <div class="phase-card core desarrollo">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 2</div>
+                    <div class="phase-subtitle">VENTA</div>
+                    <div class="phase-date">Estado: Producción<br>Fecha: 07/2024</div>
+                </div>
+
+                <div class="phase-card core desarrollo">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">DATA LOAD</div>
+                    <div class="phase-subtitle">VENTA HISTÓRICA</div>
+                    <div class="phase-date">Estado: Producción<br>Fecha: 10/2024</div>
+                </div>
+
+                <div class="phase-card core desarrollo">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 2</div>
+                    <div class="phase-subtitle">MAPAS INTERACTIVOS</div>
+                    <div class="phase-date">Estado: Producción<br>Fecha: 01/2025</div>
+                </div>
+
+                <div class="phase-card coreDetenido detenido">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 3.5</div>
+                    <div class="phase-subtitle">SUPER ADMIN</div>
+                    <div class="phase-date">Estado: Detenido<br>Fecha: 02/2025</div>
+                </div>
+
+                <div class="phase-card core propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 4</div>
+                    <div class="phase-subtitle">Integración Reniec</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card core propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 1.5</div>
+                    <div class="phase-subtitle">Nuevos campos prospectos</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+
+
+
+
+                <div class="phase-card core propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 6</div>
+                    <div class="phase-subtitle">Integración Agentes no humanos</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card core solicitud">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE COMERCIAL</div>
+                    <div class="phase-subtitle">AGREGACIÓN MULTI TENANT</div>
+                    <div class="phase-date">Estado: Solicitud</div>
+                </div>
+            </div>
+
+            <!-- Columna 2: INFRAESTRUCTURA CLOUD -->
+            <div class="column">
+                <div class="phase-card infra">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">Microsoft Azure</div>
+                    <div class="phase-subtitle">FRONT END (3)</div>
+                    <div class="phase-date">2 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
+                </div>
+
+                <div class="phase-card infra">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">Microsoft Azure</div>
+                    <div class="phase-subtitle">BACK END (3)</div>
+                    <div class="phase-date">4 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
+                </div>
+
+                <div class="phase-card infra">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">Microsoft Azure</div>
+                    <div class="phase-subtitle">Base de datos (1)</div>
+                    <div class="phase-date">2 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
+                </div>
+
+                <div class="phase-card infra">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">Geeky Tech</div>
+                    <div class="phase-subtitle">Administración<br>GitHub (1)</div>
+                    <div class="phase-date">64 / 64 (3)<br>Estado: Producción<br>Servicio Anual</div>
+                </div>
+            </div>
+
+            <!-- Columna 3: MARKETING -->
+            <div class="column">
+
+                <div class="phase-card marketing propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 4</div>
+                    <div class="phase-subtitle">INTEGRACIÓN<br>GESTOR DE LEADS<br>CORE<br>TRANSACCIONAL</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card marketing propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 4</div>
+                    <div class="phase-subtitle">SERVICIO DE<br>NOTIFICACIONES AUTOMATICAS</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card marketing pre-piloto">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 6</div>
+                    <div class="phase-subtitle">AGENTES NO<br>HUMANOS - Venta</div>
+                    <div class="phase-date">Estado: ???</div>
+                </div>
+            </div>
+
+            <!-- Columna 4: ADMINISTRACIÓN -->
+            <div class="column">
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 5</div>
+                    <div class="phase-subtitle">COMISIONES</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 6</div>
+                    <div class="phase-subtitle">POST VENTA<br><br>SISTEMA DE<br>ATENCIÓN</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 2.5</div>
+                    <div class="phase-subtitle">Carga de documentos de pago</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+            
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 2.5</div>
+                    <div class="phase-subtitle">Carga y descarga de documentos de clientes</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 4</div>
+                    <div class="phase-subtitle">SLACK INTERNO</div>
+                    <div class="phase-date">Estado: ??</div>
+                </div>
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 1.5</div>
+                    <div class="phase-subtitle">Edición masiva de lotes</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+                <div class="phase-card admin propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 2.5</div>
+                    <div class="phase-subtitle">Anulacion separaciones</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+            </div>
+            <!-- Columna 5: COMUNICACIÓN INTERNA -->
+            <div class="column">
+                <div class="phase-card comm propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 6</div>
+                    <div class="phase-subtitle">AGENTES NO HUMANOS - Atencion cliente</div>
+                    <div class="phase-date">Estado: ???</div>
+                </div>
+
+                <div class="phase-card comm propuesta">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">FASE 6</div>
+                    <div class="phase-subtitle">EXTRANET CLIENTES</div>
+                    <div class="phase-date">Estado: Propuesta</div>
+                </div>
+
+            </div>
+
+            <!-- Columna 6: IoT -->
+            <div class="column">
+                <div class="phase-card iot pre-piloto">
+                    <div class="status-indicator"></div>
+                    <div class="phase-title">SISTEMA DE<br>RECONOCIMIENTO<br>FACIAL - IA</div>
+                    <div class="phase-date">Estado: ??</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Agregar interactividad
+        document.querySelectorAll('.phase-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Crear modal o mostrar detalles
+                const title = this.querySelector('.phase-title').textContent;
+                const subtitle = this.querySelector('.phase-subtitle').textContent;
+                const date = this.querySelector('.phase-date').textContent;
+                
+                alert(`${title}\n${subtitle}\n\n${date}`);
+            });
+        });
+
+        // Animación de entrada
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.phase-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
