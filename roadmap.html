@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e8 100%);
             padding: 20px;
             min-height: 100vh;
         }
@@ -30,7 +30,7 @@
         .header {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            background: linear-gradient(90deg, #1e3a8a, #0ea5e9, #06b6d4, #ec4899, #ef4444, #65a30d);
+            background: linear-gradient(90deg, #C4DB94, #0E392F, #525D57, #056D32, #0E392F, #C4DB94);
         }
 
         .header-item {
@@ -110,21 +110,21 @@
             font-style: italic;
         }
 
-        /* Colores por categoría */
-        .core { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-        .coreDetenido { background: linear-gradient(135deg, #7983a3, #bcc2cc); }
-        .infra { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-        .marketing { background: linear-gradient(135deg, #4b5563, #6b7280); }
-        .admin { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-        .comm { background: linear-gradient(135deg, #dc2626, #ef4444); }
-        .iot { background: linear-gradient(135deg, #65a30d, #84cc16); }
+        /* Colores actualizados con la paleta verde */
+        .core { background: linear-gradient(135deg, #056D32, #0E392F); }
+        .coreDetenido { background: linear-gradient(135deg, #525D57, #7a8a7f); }
+        .infra { background: linear-gradient(135deg, #0E392F, #056D32); }
+        .marketing { background: linear-gradient(135deg, #525D57, #6b7570); }
+        .admin { background: linear-gradient(135deg, #C4DB94, #9bb86b); color: #2d3b2f !important; }
+        .comm { background: linear-gradient(135deg, #056D32, #083d29); }
+        .iot { background: linear-gradient(135deg, #C4DB94, #a8c878); color: #2d3b2f !important; }
 
-        /* Estados */
-        .desarrollo { border-left: 5px solid #22c55e; }
-        .propuesta { border-left: 5px solid #f59e0b; }
-        .solicitud { border-left: 5px solid #ef4444; }
-        .pre-piloto { border-left: 5px solid #8b5cf6; }
-        .detenido { border-left: 5px solid #f59e0b; }
+        /* Estados con colores verdes */
+        .desarrollo { border-left: 5px solid #056D32; }
+        .propuesta { border-left: 5px solid #C4DB94; }
+        .solicitud { border-left: 5px solid #0E392F; }
+        .pre-piloto { border-left: 5px solid #525D57; }
+        .detenido { border-left: 5px solid #888888; }
 
         .status-indicator {
             position: absolute;
@@ -135,6 +135,13 @@
             border-radius: 50%;
             background: rgba(255,255,255,0.3);
         }
+
+        /* Indicadores de estado específicos */
+        .desarrollo .status-indicator { background: #056D32; }
+        .propuesta .status-indicator { background: #C4DB94; }
+        .solicitud .status-indicator { background: #0E392F; }
+        .pre-piloto .status-indicator { background: #525D57; }
+        .detenido .status-indicator { background: #888888; }
 
         @media (max-width: 1200px) {
             .header {
@@ -221,10 +228,6 @@
                     <div class="phase-date">Estado: Propuesta</div>
                 </div>
 
-
-
-
-
                 <div class="phase-card core propuesta">
                     <div class="status-indicator"></div>
                     <div class="phase-title">FASE 6</div>
@@ -242,28 +245,28 @@
 
             <!-- Columna 2: INFRAESTRUCTURA CLOUD -->
             <div class="column">
-                <div class="phase-card infra">
+                <div class="phase-card infra desarrollo">
                     <div class="status-indicator"></div>
                     <div class="phase-title">Microsoft Azure</div>
                     <div class="phase-subtitle">FRONT END (3)</div>
                     <div class="phase-date">2 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
                 </div>
 
-                <div class="phase-card infra">
+                <div class="phase-card infra desarrollo">
                     <div class="status-indicator"></div>
                     <div class="phase-title">Microsoft Azure</div>
                     <div class="phase-subtitle">BACK END (3)</div>
                     <div class="phase-date">4 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
                 </div>
 
-                <div class="phase-card infra">
+                <div class="phase-card infra desarrollo">
                     <div class="status-indicator"></div>
                     <div class="phase-title">Microsoft Azure</div>
                     <div class="phase-subtitle">Base de datos (1)</div>
                     <div class="phase-date">2 Core<br>Ram 8gb<br>Estado: Producción<br>Servicio Anual</div>
                 </div>
 
-                <div class="phase-card infra">
+                <div class="phase-card infra desarrollo">
                     <div class="status-indicator"></div>
                     <div class="phase-title">Geeky Tech</div>
                     <div class="phase-subtitle">Administración<br>GitHub (1)</div>
@@ -273,7 +276,6 @@
 
             <!-- Columna 3: MARKETING -->
             <div class="column">
-
                 <div class="phase-card marketing propuesta">
                     <div class="status-indicator"></div>
                     <div class="phase-title">FASE 4</div>
@@ -292,7 +294,7 @@
                     <div class="status-indicator"></div>
                     <div class="phase-title">FASE 6</div>
                     <div class="phase-subtitle">AGENTES NO<br>HUMANOS - Venta</div>
-                    <div class="phase-date">Estado: ???</div>
+                    <div class="phase-date">Estado: Pre-piloto</div>
                 </div>
             </div>
 
@@ -318,7 +320,6 @@
                     <div class="phase-subtitle">Carga de documentos de pago</div>
                     <div class="phase-date">Estado: Propuesta</div>
                 </div>
-            
 
                 <div class="phase-card admin propuesta">
                     <div class="status-indicator"></div>
@@ -331,7 +332,7 @@
                     <div class="status-indicator"></div>
                     <div class="phase-title">FASE 4</div>
                     <div class="phase-subtitle">SLACK INTERNO</div>
-                    <div class="phase-date">Estado: ??</div>
+                    <div class="phase-date">Estado: Propuesta</div>
                 </div>
 
                 <div class="phase-card admin propuesta">
@@ -347,15 +348,15 @@
                     <div class="phase-subtitle">Anulacion separaciones</div>
                     <div class="phase-date">Estado: Propuesta</div>
                 </div>
-
             </div>
+
             <!-- Columna 5: COMUNICACIÓN INTERNA -->
             <div class="column">
-                <div class="phase-card comm propuesta">
+                <div class="phase-card comm pre-piloto">
                     <div class="status-indicator"></div>
                     <div class="phase-title">FASE 6</div>
                     <div class="phase-subtitle">AGENTES NO HUMANOS - Atencion cliente</div>
-                    <div class="phase-date">Estado: ???</div>
+                    <div class="phase-date">Estado: Pre-piloto</div>
                 </div>
 
                 <div class="phase-card comm propuesta">
@@ -364,7 +365,6 @@
                     <div class="phase-subtitle">EXTRANET CLIENTES</div>
                     <div class="phase-date">Estado: Propuesta</div>
                 </div>
-
             </div>
 
             <!-- Columna 6: IoT -->
@@ -372,7 +372,7 @@
                 <div class="phase-card iot pre-piloto">
                     <div class="status-indicator"></div>
                     <div class="phase-title">SISTEMA DE<br>RECONOCIMIENTO<br>FACIAL - IA</div>
-                    <div class="phase-date">Estado: ??</div>
+                    <div class="phase-date">Estado: Pre-piloto</div>
                 </div>
             </div>
         </div>
